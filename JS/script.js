@@ -34,16 +34,20 @@ const showStudents = () => {
     const studentName = document.createElement('h3');
     const studentHouse = document.createElement('p');
 
+   
     studentName.innerHTML = student.name;
-
     studentImage.src = student.image;
-
     studentHouse.innerHTML = student.house;
 
+    
 
     divContainer.appendChild(studentName);
     divContainer.appendChild(studentImage);
     divContainer.appendChild(studentHouse);
     divContainer.appendChild(divStudentContainer);
     studentlistContainer.appendChild(divContainer);
+
+    
+    
+
 })};
