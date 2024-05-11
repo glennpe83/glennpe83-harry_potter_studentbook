@@ -13,6 +13,7 @@ const fetchStudents = async () => {
     const data = await res.json();
     allStudents = data;
     console.log(allStudents);
+    showStudents();
    
   } catch (error) {
     console.error(error);
@@ -20,3 +21,29 @@ const fetchStudents = async () => {
 };
 
 fetchStudents();
+
+//Fetch studentlistContainer 
+const studentlistContainer = document.querySelector('#studentlistContainer');
+
+//Show students
+const showStudents = () => {
+    allStudents.forEach((student) => {
+    const divContainer = document.createElement('div');
+    const divStudentContainer = document.createElement('div');
+    const studentImage = document.createElement('img');
+    const studentName = document.createElement('h3');
+    const studentHouse = document.createElement('p');
+
+    studentName.innerHTML = student.name;
+
+    studentImage.src = student.image;
+
+    studentHouse.innerHTML = student.house;
+
+
+    divContainer.appendChild(studentName);
+    divContainer.appendChild(studentImage);
+    divContainer.appendChild(studentHouse);
+    divContainer.appendChild(divStudentContainer);
+    studentlistContainer.appendChild(divContainer);
+})};
