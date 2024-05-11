@@ -3,3 +3,47 @@
     margin: 0;
     padding: 0;
 }
+
+nav ul {
+    display: flex;
+    justify-content: space-evenly;
+    flex-wrap: wrap;
+}
+
+header {
+    text-align: center;
+    padding: 15px;
+    background-color: rgb(22, 22, 129);
+    color: white;
+}
+
+nav ul li {
+    margin: 0.5em 0 0.5em;
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: 700;
+  }
+
+  li {
+    list-style: none;
+  }
+  
+ 
+  a {
+    text-decoration: none;
+    color: inherit;
+  }
+
+  .searchContainer {
+    display: flex;
+    justify-content: center;
+    margin: 30px;
+  }
+
+  input {
+    background-color: rgb(212, 210, 210);
+    font-size: 1.3rem;
+    border-radius: 15px;
+    text-align: center;
+    padding: 5px;
+    padding-inline: 45px;
+  }
