@@ -47,3 +47,37 @@ nav ul li {
     padding: 5px;
     padding-inline: 45px;
   }
+
+  h1 {
+    text-align: center;
+    
+  }
+
+  form {
+    display: flex;
+    flex-flow: column wrap;
+    width: 60%;
+    margin: 40px auto;
+  }
+
+  form input {
+    width: 30%;
+    margin: 5px auto;
+  }
+
+  label {
+    margin: 5px auto;
+
+  }
+
+#loginBtn {
+  width: 10%;
+  margin: 10px auto;
+  font-size: 1.3rem;
+  border-radius: 10px;
+}
+
+article {
+  text-align: center;
+  margin: 55px;
+}
