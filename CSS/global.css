@@ -70,8 +70,8 @@ nav ul li {
 
   }
 
-#loginBtn, #registrerUserBtn {
-  width: 10%;
+#loginBtn, #registerUserBtn {
+  width: 20%;
   margin: 10px auto;
   font-size: 1.3rem;
   border-radius: 10px;
