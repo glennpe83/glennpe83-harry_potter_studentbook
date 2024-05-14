@@ -121,6 +121,11 @@ const showStudent = (student) => {
   overlay.appendChild(studentContainer);
 
   overlay.style.display = "block";
+
+  closeBtn.addEventListener('click', () => {
+    overlay.style.display = 'none';
+  })
+
 };
 
 const sortInAlphabeticalOrder = () => {
