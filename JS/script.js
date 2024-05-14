@@ -13,7 +13,7 @@ const fetchStudents = async () => {
     const data = await res.json();
     allStudents = data;
     console.log(allStudents);
-    showStudents();
+    sortInAlphabeticalOrder();
    
   } catch (error) {
     console.error(error);
@@ -35,6 +35,7 @@ const showStudents = () => {
     const studentImage = document.createElement('img');
     const studentName = document.createElement('h3');
     const studentHouse = document.createElement('p');
+
 
     studentName.innerHTML = student.name;
     studentImage.src = student.image;
@@ -81,3 +82,8 @@ const showStudents = () => {
     
 
 }})};
+
+const sortInAlphabeticalOrder = () => {
+  allStudents.sort((a, b) => a.name.localeCompare(b.name));
+  showStudents();
+};
