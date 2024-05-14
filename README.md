@@ -6,5 +6,5 @@ Header {
 }
 
 
-API key crudAPI: 8Rz7TEmCClRVt2DMEGrnHahPGYaYX5H3GG6qCWEEbvhZwIBAuw
+API key crudAPI: r_7WQY2sYNmiYD_rO4g74iFJd6H7tNC-F6no21dhqsPwzBFmbg
 
