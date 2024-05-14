@@ -50,6 +50,7 @@ nav ul li {
 
   h1 {
     text-align: center;
+    margin: 15px;
     
   }
 
@@ -80,4 +81,20 @@ nav ul li {
 article {
   text-align: center;
   margin: 55px;
+}
+
+#overlay {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+  background-color: rgb(49, 115, 201);
+  color: black;
+  top: 50%;
+  right: 50%;
+  width: 40rem;
+  height: auto;
+  transform: translate(50%, -50%);
+  display: none;
+  padding: 30px;
 }
