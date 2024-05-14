@@ -20,10 +20,11 @@ const fetchStudents = async () => {
   }
 };
 
-fetchStudents();
 
-//Fetch studentlistContainer 
+
+//Fetch studentlistContainer og overlay
 const studentlistContainer = document.querySelector('#studentlistContainer');
+const overlay = document.querySelector('#overlay');
 
 //Show students
 const showStudents = () => {
@@ -78,12 +79,57 @@ const showStudents = () => {
     divContainer.appendChild(divStudentContainer);
     studentlistContainer.appendChild(divContainer);
 
-    
+    divContainer.addEventListener('click', () => {
+      overlay.innerHTML = '';
+      showStudent(student);
+    })
     
 
 }})};
+
+const showStudent = (student) => {
+  const studentContainer = document.createElement('div');
+    const studentImage = document.createElement('img');
+    const studentName = document.createElement('h3');
+    const studentHouse = document.createElement('p');
+
+    
+
+
+    studentName.innerHTML = student.name;
+    studentImage.src = student.image;
+    studentHouse.innerHTML = student.house;
+
+    studentImage.alt = student.name;
+    studentImage.title = `Bilde av ${student.name}`;
+
+    studentImage.style.height = '300px';
+    studentImage.style.width = '250px';
+  
+
+    studentHouse.style.color = 'black';
+    studentHouse.style.fontSize = '1.3rem';
+    studentHouse.style.marginBottom = '10px';
+
+    
+
+    studentContainer.appendChild(studentName);
+    studentContainer.appendChild(studentImage);
+    studentContainer.appendChild(studentHouse);
+    overlay.appendChild(studentContainer);
+
+  overlay.style.display = 'block';
+}
 
 const sortInAlphabeticalOrder = () => {
   allStudents.sort((a, b) => a.name.localeCompare(b.name));
   showStudents();
 };
+
+
+
+
+
+
+
+fetchStudents();
