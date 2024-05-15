@@ -2,6 +2,7 @@
 const BASE_URL = "https://hp-api.onrender.com/api/characters/students";
 
 let allStudents;
+let studentList = []
 
 const fetchStudents = async () => {
   try {
@@ -89,6 +90,8 @@ const showStudents = () => {
   });
 };
 
+
+
 const showStudent = (student) => {
   const studentContainer = document.createElement("div");
   const studentImage = document.createElement("img");
@@ -172,11 +175,30 @@ const showStudent = (student) => {
     overlay.style.display = 'none';
   })
 
+  addToMyListBtn.addEventListener('click', () => {
+    pickStudent(student);
+    overlay.style.display = 'none';
+  });
+
 };
 
 const sortInAlphabeticalOrder = () => {
   allStudents.sort((a, b) => a.name.localeCompare(b.name));
   showStudents();
 };
+
+
+const pickStudent = (student) => {
+  studentList.push(student);
+  showStudentList();
+}
+
+const showStudentList = () => {
+  studentList.forEach((student, index) => {
+    console.log(`${index + 1}. ${student.name}`);
+  });
+};
+
+
 
 fetchStudents();
