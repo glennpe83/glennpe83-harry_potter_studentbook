@@ -12,20 +12,16 @@
       <h1>Harry Potter skolekatalog</h1>
     </header>
     <main>
-      <article>
-    <h1>Velkommen til Harry Potter årbok</h1>
-  </article>
-    <form>
-   
-      <input type="text" id="userUsername" placeholder="Brukernavn">
+      <h1>Login bruker</h1>
 
-      <input type="text" id="userPassword" placeholder="Passord">
-
-      <button id="loginBtn">Logg inn</button>
-    </form>
-    <article>
-      <a href="./registerUser.html">Trykk her for å registrere bruker</a>
-    </article>
+      <form>
+        <input id="usernameInput" name="usernameInput" type="text" placeholder="Skriv inn brukernavn" />
+        <input id="passwordInput" name="passwordInput" type="password" placeholder="Skriv inn passord" />
+      </form>
+      <div class="submitButton">
+        <button type="submit" id="loginBtn">Logg inn</button>
+      </div>
+      <a href="registerUser.html"><h3>Ingen brukerkonto? Registrer bruker her</h3></a>
     </main>
   </body>
 </html>

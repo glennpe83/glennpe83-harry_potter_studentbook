@@ -39,7 +39,7 @@ nav ul li {
     margin: 30px;
   }
 
-  input {
+   input {
     background-color: rgb(212, 210, 210);
     font-size: 1.3rem;
     border-radius: 15px;
@@ -48,11 +48,13 @@ nav ul li {
     padding-inline: 45px;
   }
 
-  h1 {
+  h1, h3 {
     text-align: center;
     margin: 15px;
     
   }
+
+  
 
   form {
     display: flex;
@@ -61,27 +63,26 @@ nav ul li {
     margin: 40px auto;
   }
 
-  form input {
+.submitButton {
+  display: flex;
+  justify-content: center;
+}
+
+form input {
     width: 30%;
-    margin: 5px auto;
+    margin: 15px auto;
   }
 
-  label {
-    margin: 5px auto;
 
-  }
 
-#loginBtn, #registerUserBtn {
+#loginBtn, #submitNewUsernameBtn {
   width: 20%;
   margin: 10px auto;
   font-size: 1.3rem;
   border-radius: 10px;
 }
 
-article {
-  text-align: center;
-  margin: 55px;
-}
+
 
 #overlay {
   display: flex;
@@ -98,3 +99,4 @@ article {
   display: none;
   padding: 30px;
 }
+
