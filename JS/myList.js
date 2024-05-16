@@ -34,23 +34,18 @@ const logOutBtn = document.querySelector('#logOutBtn');
 const seeUserStatus = () => {
     if (loggedIn()) {
         const user = getLoggedInUser();
-        userStatus.textContent = `Logget inn som ${user.username}`;
+        userStatus.textContent = `${user.username}`;
         logOutBtn.style.display = 'block'; 
     } else {
       userStatus.textContent = 'Ikke logget inn';
-      logOutBtn.textContent = 'Logg inn'; 
-      logOutBtn.style.display = 'block';
+      logOutBtn.style.display = 'none';
     }
 }
 
 logOutBtn.addEventListener("click", () => {
-  if (loggedIn()) {
     logOut(); 
-    seeUserStatus(); 
-  } else {
     window.location.href = "index.html";
-  }
-});
+  });
 
 
 seeUserStatus();

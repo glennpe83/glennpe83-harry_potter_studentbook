@@ -32,24 +32,19 @@ const logOutBtn = document.querySelector('#logOutBtn');
 
 //See username on page or log in/log out user.
 const seeUserStatus = () => {
-    if (loggedIn()) {
-        const user = getLoggedInUser();
-        userStatus.textContent = `Logget inn som ${user.username}`;
-        logOutBtn.style.display = 'block'; 
-    } else {
-      userStatus.textContent = 'Ikke logget inn';
-      logOutBtn.textContent = 'Logg inn'; 
-      logOutBtn.style.display = 'block';
-    }
+  if (loggedIn()) {
+      const user = getLoggedInUser();
+      userStatus.textContent = `${user.username}`;
+      logOutBtn.style.display = 'block'; 
+  } else {
+    userStatus.textContent = 'Ikke logget inn';
+    logOutBtn.style.display = 'none';
+  }
 }
 
 logOutBtn.addEventListener("click", () => {
-  if (loggedIn()) {
-    logOut(); 
-    seeUserStatus(); 
-  } else {
-    window.location.href = "index.html";
-  }
+  logOut(); 
+  window.location.href = "index.html";
 });
 
 
