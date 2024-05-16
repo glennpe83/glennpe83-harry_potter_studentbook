@@ -59,15 +59,17 @@ const userLogin = async () => {
     } else if (!(await verifyLogin(usernameInput, passwordInput))) {
       alert("Feil brukernavn eller passord");
     } else {
-      getLoginStatus(true);
       const userID = await fetchUserID(usernameInput);
-      sessionStorage.setItem("loggedInUser", JSON.stringify(userID));
+      const userData = { username: usernameInput, userID: userID };
+      sessionStorage.setItem("loggedInUser", JSON.stringify(userData));
+      setLoginStatus(true);
       window.location.href = "main.html";
     }
   } catch (error) {
     console.error("Feil med verifisering av login", error.message);
   }
 };
+
 const fetchUserID = async (username) => {
   try {
     const res = await fetch(USERBASE_URL, {
