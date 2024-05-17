@@ -47,10 +47,26 @@ logOutBtn.addEventListener("click", () => {
   window.location.href = "index.html";
 });
 
-const studentList = JSON.parse(sessionStorage.getItem('studentList'));
+let studentList = JSON.parse(sessionStorage.getItem('studentList'));
 
 seeUserStatus();
 
+const saveStudentListToAPI = async (studentList) => {
+  try {
+    const response = await fetch(USERBASE_URL, {
+      method: 'POST',
+      headers: getHeaders(API_KEY),
+      body: JSON.stringify(studentList),
+    });
+    if (!response.ok) {
+      console.error('Feil respons fra API:', response);
+      throw new Error('Feil ved lagring av studentlisten til API-et.');
+    }
+    console.log('Studentlisten ble lagret til API-et.');
+  } catch (error) {
+    console.error(error);
+  }
+};
 
 
 const myStudentsList = document.querySelector("#myStudentsList");
@@ -63,6 +79,7 @@ const showMyStudent = (student) => {
   const studentHouse = document.createElement("p");
   const yearOfBirth = document.createElement('p');
   const ancestry = document.createElement('p');
+  const removeStudent = document.createElement('button');
 
 
 
@@ -107,9 +124,27 @@ const showMyStudent = (student) => {
   studentImage.style.height = "300px";
   studentImage.style.width = "250px";
   studentImage.style.margin = '30px';
-  studentHouse.style.color = "black";
+  studentHouse.style.color = "white";
   studentHouse.style.fontSize = "1.5rem";
   studentHouse.style.marginBottom = "10px";
+
+  removeStudent.textContent = 'Slett student';
+  removeStudent.style.height = '30px';
+  removeStudent.style.padding = '5px';
+  removeStudent.style.margin = '15px';
+
+  removeStudent.addEventListener('click', async () => {
+    const index = studentList.findIndex((s) => s.name === student.name);
+    if (index !== -1) {
+        studentList.splice(index, 1);
+        sessionStorage.setItem('studentList', JSON.stringify(studentList));
+        await saveStudentListToAPI(studentList);
+        divContainer.remove();
+        console.log(`${student.name} ble fjernet fra listen.`);
+    } else {
+        console.log(`${student.name} ble ikke funnet i listen.`);
+    }
+});
 
 
 
@@ -119,6 +154,7 @@ const showMyStudent = (student) => {
   divContainer.appendChild(yearOfBirth);
   divContainer.appendChild(ancestry);
   divStudentContainer.appendChild(divContainer);
+  divContainer.appendChild(removeStudent);
   myStudentsList.appendChild(divContainer);
 };
 
