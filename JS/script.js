@@ -30,7 +30,7 @@ const logOutBtn = document.querySelector('#logOutBtn');
 
 
 
-//See username on page or log in/log out user.
+
 const seeUserStatus = () => {
   if (loggedIn()) {
       const user = getLoggedInUser();
@@ -53,6 +53,7 @@ seeUserStatus();
 let allStudents;
 let studentList = []
 
+
 const fetchStudents = async () => {
   try {
     const res = await fetch(BASE_URL);
@@ -68,11 +69,13 @@ const fetchStudents = async () => {
   }
 };
 
-//Fetch studentlistContainer og overlay
+
+
+
+
 const studentlistContainer = document.querySelector("#studentlistContainer");
 const overlay = document.querySelector("#overlay");
 
-//Show students
 const showStudents = () => {
   allStudents.forEach((student) => {
     if (student.image !== "") {
@@ -89,12 +92,13 @@ const showStudents = () => {
       studentImage.alt = student.name;
       studentImage.title = `Bilde av ${student.name}`;
 
-      //Styling av side via DOM
+   
       studentlistContainer.style.display = "flex";
       studentlistContainer.style.flexFlow = "row wrap";
       studentlistContainer.style.gap = "30px";
       studentlistContainer.style.margin = "30px";
       studentlistContainer.style.padding = "30px";
+      studentlistContainer.style.backgroundColor = '#e9dede';
 
       divContainer.style.display = "flex";
       divContainer.style.alignItems = "center";
@@ -106,6 +110,7 @@ const showStudents = () => {
       divStudentContainer.style.display = "flex";
       divStudentContainer.style.justifyContent = "center";
       divStudentContainer.style.width = "250px";
+     
 
       studentImage.style.height = "300px";
       studentImage.style.width = "250px";
@@ -140,7 +145,7 @@ const showStudents = () => {
 };
 
 
-//StudentOverlay 
+
 const showStudent = (student) => {
   const studentContainer = document.createElement("div");
   const studentImage = document.createElement("img");
@@ -236,17 +241,55 @@ const sortInAlphabeticalOrder = () => {
   showStudents();
 };
 
-//Push student to myList
 const pickStudent = (student) => {
-  studentList.push(student);
-  showStudentList();
+  const existingStudentIndex = studentList.findIndex((s) => s.name === student.name);
+
+ 
+  if (existingStudentIndex === -1) {
+    studentList.push(student);
+    sessionStorage.setItem('studentList', JSON.stringify(studentList));
+    saveStudentListToAPI(studentList);
+    showstudentList();
+  } else {
+    alert(`${student.name} er allerede i listen.`);
+  }
 }
 
-const showStudentList = () => {
+
+const showstudentList = () => {
   studentList.forEach((student, index) => {
     console.log(`${index + 1}. ${student.name}`);
   });
 };
+
+
+const saveStudentListToAPI = async (studentList) => {
+  try {
+    const response = await fetch(USERBASE_URL, {
+      method: 'POST',
+      headers: getHeaders(API_KEY),
+      body: JSON.stringify({ studentList }),
+    });
+    if (!response.ok) {
+      throw new Error('Feil ved lagring av studentlisten til API-et.');
+    }
+    console.log('Studentlisten ble lagret til API-et.');
+  } catch (error) {
+    console.error(error);
+  }
+};
+
+
+
+const showStoredStudentList = () => {
+  const storedStudentList = JSON.parse(sessionStorage.getItem('studentList'));
+  if (storedStudentList) {
+    studentList = storedStudentList;
+    showstudentList();
+  }
+};
+
+showStoredStudentList();
 
 
 
