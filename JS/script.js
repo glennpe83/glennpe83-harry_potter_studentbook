@@ -34,7 +34,7 @@ const logOutBtn = document.querySelector('#logOutBtn');
 const seeUserStatus = () => {
   if (loggedIn()) {
       const user = getLoggedInUser();
-      userStatus.textContent = `${user.username}`;
+      userStatus.textContent = `${user.username} Potter skolekatalog`;
       logOutBtn.style.display = 'block'; 
   } else {
     userStatus.textContent = 'Ikke logget inn';
