@@ -268,9 +268,10 @@ const saveStudentListToAPI = async (studentList) => {
     const response = await fetch(USERBASE_URL, {
       method: 'POST',
       headers: getHeaders(API_KEY),
-      body: JSON.stringify({ studentList }),
+      body: JSON.stringify(studentList),
     });
     if (!response.ok) {
+      console.error('Feil respons fra API:', response);
       throw new Error('Feil ved lagring av studentlisten til API-et.');
     }
     console.log('Studentlisten ble lagret til API-et.');
@@ -278,6 +279,7 @@ const saveStudentListToAPI = async (studentList) => {
     console.error(error);
   }
 };
+
 
 
 
