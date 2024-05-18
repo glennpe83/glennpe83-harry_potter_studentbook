@@ -118,7 +118,7 @@ const showMyStudent = (student) => {
   studentImage.src = student.image;
   studentHouse.innerHTML = `Medlem av House ${student.house}`;
   yearOfBirth.textContent = student.yearOfBirth === null ? "Ukjent fødselsår" : `Fødselsår: ${student.yearOfBirth}`;
-  ancestry.textContent = student.ancestry === "" ? "Ukjent herkomst" : student.ancestry;
+  ancestry.textContent = student.ancestry === "" ? "Ukjent herkomst" :`Herkomst: ${student.ancestry}`;
 
   studentName.style.fontSize = "30px";
   studentImage.alt = student.name;
