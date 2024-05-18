@@ -1,3 +1,4 @@
+//Fetch crudAPI og API-Key
 const USERBASE_URL = "https://crudapi.co.uk/api/v1/user";
 const API_KEY = "Ag7ZwNDZWA0DnKJiXSS2rg6AmGdMQrfEX_8DTeSU4orhdhnRUw";
 const getHeaders = (apiKey) => {
@@ -21,6 +22,7 @@ const setLoggedInUser = (id) => {
   return sessionStorage.setItem("loggedInUser", JSON.stringify(id));
 };
 
+//Sjekker om brukernavnet eksisterer 
 const checkIsUserNameExists = async (username) => {
   try {
     const res = await fetch(USERBASE_URL);
@@ -33,6 +35,8 @@ const checkIsUserNameExists = async (username) => {
     console.error("Noe er feil med verifiseringen av bruker");
   }
 };
+
+//Sjekker brukernavn og passord opp i mot crudAPI
 const verifyLogin = async (username, password) => {
   try {
     const res = await fetch(USERBASE_URL, {
@@ -49,9 +53,11 @@ const verifyLogin = async (username, password) => {
   }
 };
 
+
 const userLogin = async () => {
   const usernameInput = document.querySelector("#usernameInput").value;
   const passwordInput = document.querySelector("#passwordInput").value;
+
 
   try {
     if (usernameInput === "" || passwordInput === "") {
@@ -70,6 +76,8 @@ const userLogin = async () => {
   }
 };
 
+
+//Henter ID basert på brukernavn
 const fetchUserID = async (username) => {
   try {
     const res = await fetch(USERBASE_URL, {
@@ -83,6 +91,8 @@ const fetchUserID = async (username) => {
     console.error("Feil med henting av ID", error.message);
   }
 };
+
+//Knapp for å iverksette pålogging
 const loginBtn = document.querySelector("#loginBtn");
 loginBtn.addEventListener("click", async () => {
   await userLogin();
