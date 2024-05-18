@@ -1,6 +1,8 @@
 Dette er et system hvor man henter inn studenter fra Harry Potter universet til et system. I systemet kan man trykke på en student, se mer info og legge studenten i en egen skolekatalog.
-I fremtidig version skal man kunne søke opp studenter, filtrere på hus og herkomst. 
+Man kan søke etter studenter. Det er flere studenter i API`et, men jeg har lagt opp slik at man kun ser de med eget bilde. 
 Man har også mulighet til å legge til lærere via APIET.
+I fremtidige utgaver kan man filtrere etter annen informasjon APIET har om studenten og man kan ha en egen liste per innlogget bruker.
+
 
 Fargekoder:
 Header {
