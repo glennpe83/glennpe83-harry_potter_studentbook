@@ -1,4 +1,4 @@
-//Fetch api
+//Fetch crudAPI og API-Key
 const USERBASE_URL = "https://crudapi.co.uk/api/v1/user";
 const API_KEY = "Ag7ZwNDZWA0DnKJiXSS2rg6AmGdMQrfEX_8DTeSU4orhdhnRUw";
 const getHeaders = (apiKey) => {
@@ -8,6 +8,8 @@ const getHeaders = (apiKey) => {
   };
 };
 
+
+//Sjekker om brukernavn eksisterer
 const ifUsernameExist = async (username) => {
   try {
     const res = await fetch(USERBASE_URL,{
@@ -28,6 +30,7 @@ const newUser = async () => {
   const newUsernameInput = document.querySelector("#newUsernameInput").value;
   const newPasswordInput = document.querySelector("#newPasswordInput").value;
 
+  //Lagrer brukernavn og passord i variabelen user
   try {
     const user = [
       { username: newUsernameInput, password: newPasswordInput, myStudents: [] },
@@ -38,7 +41,9 @@ const newUser = async () => {
     }else if (await ifUsernameExist(newUsernameInput)) {
       alert("Brukernavnet eksisterer allerede");
     } else {
-      //post user
+
+
+      //Poster bruker til crudAPI
       const res = await fetch(USERBASE_URL, {
         method: "POST",
         headers: getHeaders(API_KEY),
@@ -55,6 +60,8 @@ const newUser = async () => {
   }
 };
 
+
+//Lager ny bruker når knappen trykkes på
 const submitNewUsernameBtn = document.querySelector("#submitNewUsernameBtn");
 submitNewUsernameBtn.addEventListener("click", async () => {
   await newUser();
