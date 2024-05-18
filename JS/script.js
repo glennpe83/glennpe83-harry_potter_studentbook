@@ -1,4 +1,4 @@
-//Fetch api
+//Fetch Harry Potter API, crudAPI og API-Key
 const BASE_URL = "https://hp-api.onrender.com/api/characters/students";
 const USERBASE_URL = "https://crudapi.co.uk/api/v1/user";
 const API_KEY = "Ag7ZwNDZWA0DnKJiXSS2rg6AmGdMQrfEX_8DTeSU4orhdhnRUw";
@@ -9,6 +9,8 @@ const getHeaders = (apiKey) => {
     Authorization: `Bearer ${apiKey}`,
   };
 };
+
+
 const getLoggedInUser = () => {
   return JSON.parse(sessionStorage.getItem("loggedInUser"));
 };
@@ -25,12 +27,13 @@ const logOut = () => {
   location.reload();
 }
 
+//Henter brukernavn og logg ut-knapp
 const userStatus = document.querySelector('#userStatus');
 const logOutBtn = document.querySelector('#logOutBtn');
 
 
 
-
+//Viser brukerinnlogging
 const seeUserStatus = () => {
   if (loggedIn()) {
       const user = getLoggedInUser();
@@ -42,15 +45,18 @@ const seeUserStatus = () => {
   }
 }
 
+seeUserStatus();
+
+//Loggut-knapp som sender brukeren til innlogging-siden
 logOutBtn.addEventListener("click", () => {
   logOut(); 
   window.location.href = "index.html";
 });
 
 
-seeUserStatus();
 
 
+//Lagrer studentList til API
 const saveStudentListToAPI = async (studentList) => {
   try {
     const response = await fetch(USERBASE_URL, {
@@ -68,10 +74,13 @@ const saveStudentListToAPI = async (studentList) => {
   }
 };
 
+
+//Deklarerer allStudents som lagrer studentene fra API og studentList som lagrer lagrede studenter
 let allStudents;
-let studentList = []
+let studentList = [];
 
 
+//Henter inn studenter
 const fetchStudents = async () => {
   try {
     const res = await fetch(BASE_URL);
@@ -88,12 +97,12 @@ const fetchStudents = async () => {
 };
 
 
-
-
-
+//Henter div hvor studentene skal vises og overlay hvor studentinformasjon skal vises.
 const studentlistContainer = document.querySelector("#studentlistContainer");
 const overlay = document.querySelector("#overlay");
 
+
+//Viser alle studentene
 const showStudents = () => {
   allStudents.forEach((student) => {
     if (student.image !== "") {
@@ -163,7 +172,7 @@ const showStudents = () => {
 };
 
 
-
+//Viser en student i overlay
 const showStudent = (student) => {
   const studentContainer = document.createElement("div");
   const studentImage = document.createElement("img");
@@ -254,11 +263,14 @@ const showStudent = (student) => {
 
 };
 
+
 const sortInAlphabeticalOrder = () => {
   allStudents.sort((a, b) => a.name.localeCompare(b.name));
   showStudents();
 };
 
+
+//Legger til student i studentList
 const pickStudent = (student) => {
   const existingStudentIndex = studentList.findIndex((s) => s.name === student.name);
   if (existingStudentIndex === -1) {
@@ -272,6 +284,7 @@ const pickStudent = (student) => {
 }
 
 
+
 const showstudentList = () => {
   studentList.forEach((student, index) => {
     console.log(`${index + 1}. ${student.name}`);
@@ -279,11 +292,7 @@ const showstudentList = () => {
 };
 
 
-
-
-
-
-
+//Henter studentlisten 
 const showStoredStudentList = () => {
   const storedStudentList = JSON.parse(sessionStorage.getItem('studentList'));
   if (storedStudentList) {
