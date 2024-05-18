@@ -70,10 +70,10 @@ const saveStudentListToAPI = async (studentList) => {
 };
 
 //Deklarerer global allStudents som lagrer studentene fra API og studentList som lagrer lagrede studenter
-let allStudents;
+
 let studentList = [];
 
-//Henter inn studenter
+let allStudents;
 const fetchStudents = async () => {
   try {
     const res = await fetch(BASE_URL);
@@ -82,20 +82,23 @@ const fetchStudents = async () => {
     }
     const data = await res.json();
     allStudents = data;
-    console.log(allStudents);
-    sortInAlphabeticalOrder();
+    sortInAlphabeticalOrder().forEach((student) => {
+      showStudents(student);
+    });
   } catch (error) {
     console.error(error);
   }
 };
+
+fetchStudents();
+
 
 //Henter div hvor studentene skal vises og overlay hvor studentinformasjon skal vises.
 const studentlistContainer = document.querySelector("#studentlistContainer");
 const overlay = document.querySelector("#overlay");
 
 //Viser alle studentene
-const showStudents = () => {
-  allStudents.forEach((student) => {
+const showStudents = (student) => {
     if (student.image !== "") {
       const divContainer = document.createElement("div");
       const divStudentContainer = document.createElement("div");
@@ -112,6 +115,7 @@ const showStudents = () => {
 
       studentlistContainer.style.display = "flex";
       studentlistContainer.style.flexFlow = "row wrap";
+
       studentlistContainer.style.gap = "30px";
       studentlistContainer.style.margin = "30px";
       studentlistContainer.style.padding = "30px";
@@ -155,9 +159,9 @@ const showStudents = () => {
         overlay.innerHTML = "";
         showStudent(student);
       });
-    }
-  });
-};
+    }};
+  
+
 
 //Viser en student i overlay
 const showStudent = (student) => {
@@ -236,11 +240,31 @@ const showStudent = (student) => {
   });
 };
 
-//Studentene blir sortert i alfabetisk rekkefølge når de blir presentert
 const sortInAlphabeticalOrder = () => {
-  allStudents.sort((a, b) => a.name.localeCompare(b.name));
-  showStudents();
+  return allStudents.sort((a, b) => a.name.localeCompare(b.name));
 };
+
+//Henter inn input til søkefeilt
+const findStudentInput = document.querySelector('#findStudentInput');
+
+
+//Søker etter student
+const findStudent = () => {
+  const inputValue = findStudentInput.value.toLowerCase();
+  const foundStudents = allStudents.filter((student) =>
+    student.name.toLowerCase().includes(inputValue)
+  );
+
+  if (foundStudents.length > 0) {
+    studentlistContainer.innerHTML = "";
+    foundStudents.forEach((student) => {
+      showStudents(student);
+    });
+  }
+};
+
+findStudentInput.addEventListener("input", findStudent);
+
 
 //Legger til student i studentList
 const pickStudent = (student) => {
@@ -272,4 +296,3 @@ const showStoredStudentList = () => {
 
 showStoredStudentList();
 
-fetchStudents();
