@@ -235,7 +235,7 @@ const showStudent = (student) => {
   });
 
   addToMyListBtn.addEventListener("click", () => {
-    pickStudent(student);
+    addStudentToStudentList(student);
     overlay.style.display = "none";
   });
 };
@@ -267,7 +267,7 @@ findStudentInput.addEventListener("input", findStudent);
 
 
 //Legger til student i studentList
-const pickStudent = (student) => {
+const addStudentToStudentList = (student) => {
   const existingStudentIndex = studentList.findIndex((s) => s.name === student.name);
   if (existingStudentIndex === -1) {
     studentList.push(student);
