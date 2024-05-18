@@ -261,8 +261,6 @@ const sortInAlphabeticalOrder = () => {
 
 const pickStudent = (student) => {
   const existingStudentIndex = studentList.findIndex((s) => s.name === student.name);
-
- 
   if (existingStudentIndex === -1) {
     studentList.push(student);
     sessionStorage.setItem('studentList', JSON.stringify(studentList));

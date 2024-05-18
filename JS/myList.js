@@ -133,18 +133,26 @@ const showMyStudent = (student) => {
   removeStudent.style.padding = '5px';
   removeStudent.style.margin = '15px';
 
-  removeStudent.addEventListener('click', async () => {
+removeStudent.addEventListener('click', async () => {
     const index = studentList.findIndex((s) => s.name === student.name);
     if (index !== -1) {
         studentList.splice(index, 1);
-        sessionStorage.setItem('studentList', JSON.stringify(studentList));
+        sessionStorage.setItem('studentList', JSON.stringify(studentList)); 
         await saveStudentListToAPI(studentList);
         divContainer.remove();
         console.log(`${student.name} ble fjernet fra listen.`);
+
+      
+        const storedStudentList = JSON.parse(sessionStorage.getItem('studentList'));
+        if (storedStudentList) {
+            const updatedStoredStudentList = storedStudentList.filter((s) => s.name !== student.name);
+            sessionStorage.setItem('studentList', JSON.stringify(updatedStoredStudentList));
+        }
     } else {
         console.log(`${student.name} ble ikke funnet i listen.`);
     }
 });
+
 
 
 
