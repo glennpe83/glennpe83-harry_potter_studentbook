@@ -1,3 +1,7 @@
+Dette er et system hvor man henter inn studenter fra Harry Potter universet til et system. I systemet kan man trykke på en student, se mer info og legge studenten i en egen skolekatalog.
+I fremtidig version skal man kunne søke opp studenter, filtrere på hus og herkomst. 
+Man har også mulighet til å legge til lærere via APIET.
+
 Fargekoder:
 Header {
  background-color: rgb(22, 22, 129);
@@ -13,3 +17,4 @@ Fargekoder hus:
 Gryffindor: #7F0909
 Ravenclaw: #0E1A40
 Slytherin: #1A472A
+
