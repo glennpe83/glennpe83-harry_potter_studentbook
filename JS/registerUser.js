@@ -9,7 +9,7 @@ const getHeaders = (apiKey) => {
 };
 
 
-//Sjekker om brukernavn eksisterer
+//Sjekker om brukernavn eksisterer. Noe inspirasjon fra arbeidskrav 2.
 const ifUsernameExist = async (username) => {
   try {
     const res = await fetch(USERBASE_URL,{
@@ -43,7 +43,7 @@ const newUser = async () => {
     } else {
 
 
-      //Poster bruker til crudAPI
+      //Poster bruker til crudAPI. Noe inspirasjon fra arbeidskrav 2.
       const res = await fetch(USERBASE_URL, {
         method: "POST",
         headers: getHeaders(API_KEY),

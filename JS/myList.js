@@ -10,6 +10,7 @@ const getHeaders = (apiKey) => {
   };
 };
 
+//Brukerstatus i session. Hentet inspirasjon fra Arbeidskrav 2 i samarbeid med gruppemedlemmer.
 const getLoggedInUser = () => {
   return JSON.parse(sessionStorage.getItem("loggedInUser"));
 };
@@ -32,7 +33,7 @@ const logOut = () => {
 const userStatus = document.querySelector('#userStatus');
 const logOutBtn = document.querySelector('#logOutBtn');
 
-//Viser brukerinnlogging
+//Viser brukerinnlogging. Hentet inspirasjon fra Arbeidskrav 2 i samarbeid med gruppemedlemmer.
 const seeUserStatus = () => {
   if (loggedIn()) {
     const user = getLoggedInUser();
@@ -44,15 +45,16 @@ const seeUserStatus = () => {
   }
 }
 
-//Loggut-knapp som sender brukeren til innlogging-siden
+//Loggut-knapp som sender brukeren til innlogging-siden. 
 logOutBtn.addEventListener("click", () => {
   logOut(); 
   window.location.href = "index.html";
 });
 
-let studentList = JSON.parse(sessionStorage.getItem('studentList'));
+let studentList = JSON.parse(sessionStorage.getItem('studentList')) || [];
 
 seeUserStatus();
+
 
 
 //Lagrer studentList til API
@@ -139,8 +141,18 @@ const showMyStudent = (student) => {
   removeStudent.style.padding = '5px';
   removeStudent.style.margin = '15px';
 
+  
+  divContainer.appendChild(studentName);
+  divContainer.appendChild(studentImage);
+  divContainer.appendChild(studentHouse);
+  divContainer.appendChild(yearOfBirth);
+  divContainer.appendChild(ancestry);
+  divStudentContainer.appendChild(divContainer);
+  divContainer.appendChild(removeStudent);
+  myStudentsList.appendChild(divContainer);
 
-  //Fjerner student fra listen og sessionstorage
+
+  //Fjerner student fra listen og sessionstorage. Hentet inspirasjon fra Arbeidskrav 2 i samarbeid med gruppemedlemmer.
 removeStudent.addEventListener('click', async () => {
     const index = studentList.findIndex((s) => s.name === student.name);
     if (index !== -1) {
@@ -160,23 +172,11 @@ removeStudent.addEventListener('click', async () => {
         console.log(`${student.name} ble ikke funnet i listen.`);
     }
 });
-
-
-
-
-  divContainer.appendChild(studentName);
-  divContainer.appendChild(studentImage);
-  divContainer.appendChild(studentHouse);
-  divContainer.appendChild(yearOfBirth);
-  divContainer.appendChild(ancestry);
-  divStudentContainer.appendChild(divContainer);
-  divContainer.appendChild(removeStudent);
-  myStudentsList.appendChild(divContainer);
 };
 
 //Sjekker om studentListen er tom
 if (studentList) {
-  studentList.forEach((student, index) => {
+  studentList.forEach((student) => {
     showMyStudent(student); 
   });
 } else {

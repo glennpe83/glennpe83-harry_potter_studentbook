@@ -8,6 +8,7 @@ const getHeaders = (apiKey) => {
   };
 };
 
+//Brukerstatus i session. Hentet inspirasjon fra Arbeidskrav 2 i samarbeid med gruppemedlemmer.
 const setLoginStatus = (status) => {
   sessionStorage.setItem("loggedIn", status ? "true" : "false");
 };
@@ -22,7 +23,7 @@ const setLoggedInUser = (id) => {
   return sessionStorage.setItem("loggedInUser", JSON.stringify(id));
 };
 
-//Sjekker om brukernavnet eksisterer 
+//Sjekker om brukernavnet eksisterer
 const checkIsUserNameExists = async (username) => {
   try {
     const res = await fetch(USERBASE_URL);
@@ -36,7 +37,7 @@ const checkIsUserNameExists = async (username) => {
   }
 };
 
-//Sjekker brukernavn og passord opp i mot crudAPI
+//Sjekker brukernavn og passord opp i mot crudAPI. Noe inspirasjon fra arbeidskrav 2.
 const verifyLogin = async (username, password) => {
   try {
     const res = await fetch(USERBASE_URL, {
@@ -54,10 +55,10 @@ const verifyLogin = async (username, password) => {
 };
 
 
+//Noe inspirasjon fra arbeidskrav 2.
 const userLogin = async () => {
   const usernameInput = document.querySelector("#usernameInput").value;
   const passwordInput = document.querySelector("#passwordInput").value;
-
 
   try {
     if (usernameInput === "" || passwordInput === "") {
@@ -76,8 +77,7 @@ const userLogin = async () => {
   }
 };
 
-
-//Henter ID basert på brukernavn
+//Henter ID basert på brukernavn. Noe inspirasjon fra arbeidskrav 2.
 const fetchUserID = async (username) => {
   try {
     const res = await fetch(USERBASE_URL, {
