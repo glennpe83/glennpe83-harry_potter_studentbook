@@ -54,7 +54,6 @@ const verifyLogin = async (username, password) => {
   }
 };
 
-
 //Noe inspirasjon fra arbeidskrav 2.
 const userLogin = async () => {
   const usernameInput = document.querySelector("#usernameInput").value;

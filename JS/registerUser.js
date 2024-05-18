@@ -8,13 +8,12 @@ const getHeaders = (apiKey) => {
   };
 };
 
-
 //Sjekker om brukernavn eksisterer. Noe inspirasjon fra arbeidskrav 2.
 const ifUsernameExist = async (username) => {
   try {
-    const res = await fetch(USERBASE_URL,{
-        method:"GET",
-        headers:getHeaders(API_KEY)
+    const res = await fetch(USERBASE_URL, {
+      method: "GET",
+      headers: getHeaders(API_KEY),
     });
     if (!res.ok) {
       throw new Error("Noe er feil med verifiseringen av bruker");
@@ -32,17 +31,13 @@ const newUser = async () => {
 
   //Lagrer brukernavn og passord i variabelen user
   try {
-    const user = [
-      { username: newUsernameInput, password: newPasswordInput, myStudents: [] },
-    ];
+    const user = [{ username: newUsernameInput, password: newPasswordInput, myStudents: [] }];
 
     if (newUsernameInput === "" || newPasswordInput === "") {
       alert("Du må fylle inn begge feltene");
-    }else if (await ifUsernameExist(newUsernameInput)) {
+    } else if (await ifUsernameExist(newUsernameInput)) {
       alert("Brukernavnet eksisterer allerede");
     } else {
-
-
       //Poster bruker til crudAPI. Noe inspirasjon fra arbeidskrav 2.
       const res = await fetch(USERBASE_URL, {
         method: "POST",
@@ -52,14 +47,13 @@ const newUser = async () => {
       if (!res.ok) {
         throw new error("Ooops. Her ble det noe feil");
       } else {
-        window.location.href = 'index.html';
+        window.location.href = "index.html";
       }
     }
   } catch (error) {
     console.error("Det ble noe feil med registrering av bruker");
   }
 };
-
 
 //Lager ny bruker når knappen trykkes på
 const submitNewUsernameBtn = document.querySelector("#submitNewUsernameBtn");

@@ -92,76 +92,74 @@ const fetchStudents = async () => {
 
 fetchStudents();
 
-
 //Henter div hvor studentene skal vises og overlay hvor studentinformasjon skal vises.
 const studentlistContainer = document.querySelector("#studentlistContainer");
 const overlay = document.querySelector("#overlay");
 
 //Viser alle studentene
 const showStudents = (student) => {
-    if (student.image !== "") {
-      const divContainer = document.createElement("div");
-      const divStudentContainer = document.createElement("div");
-      const studentImage = document.createElement("img");
-      const studentName = document.createElement("h3");
-      const studentHouse = document.createElement("p");
+  if (student.image !== "") {
+    const divContainer = document.createElement("div");
+    const divStudentContainer = document.createElement("div");
+    const studentImage = document.createElement("img");
+    const studentName = document.createElement("h3");
+    const studentHouse = document.createElement("p");
 
-      studentName.innerHTML = student.name;
-      studentImage.src = student.image;
-      studentHouse.innerHTML = student.house;
+    studentName.innerHTML = student.name;
+    studentImage.src = student.image;
+    studentHouse.innerHTML = student.house;
 
-      studentImage.alt = student.name;
-      studentImage.title = `Bilde av ${student.name}`;
+    studentImage.alt = student.name;
+    studentImage.title = `Bilde av ${student.name}`;
 
-      studentlistContainer.style.display = "flex";
-      studentlistContainer.style.flexFlow = "row wrap";
+    studentlistContainer.style.display = "flex";
+    studentlistContainer.style.flexFlow = "row wrap";
 
-      studentlistContainer.style.gap = "30px";
-      studentlistContainer.style.margin = "30px";
-      studentlistContainer.style.padding = "30px";
-      studentlistContainer.style.backgroundColor = "#e9dede";
+    studentlistContainer.style.gap = "30px";
+    studentlistContainer.style.margin = "30px";
+    studentlistContainer.style.padding = "30px";
+    studentlistContainer.style.backgroundColor = "#e9dede";
 
-      divContainer.style.display = "flex";
-      divContainer.style.alignItems = "center";
-      divContainer.style.justifyContent = "space-evenly";
-      divContainer.style.flexFlow = "column wrap";
-      divContainer.style.border = "2px black solid";
-      divContainer.style.color = "white";
+    divContainer.style.display = "flex";
+    divContainer.style.alignItems = "center";
+    divContainer.style.justifyContent = "space-evenly";
+    divContainer.style.flexFlow = "column wrap";
+    divContainer.style.border = "2px black solid";
+    divContainer.style.color = "white";
 
-      divStudentContainer.style.display = "flex";
-      divStudentContainer.style.justifyContent = "center";
-      divStudentContainer.style.width = "250px";
+    divStudentContainer.style.display = "flex";
+    divStudentContainer.style.justifyContent = "center";
+    divStudentContainer.style.width = "250px";
 
-      studentImage.style.height = "300px";
-      studentImage.style.width = "250px";
+    studentImage.style.height = "300px";
+    studentImage.style.width = "250px";
 
-      studentHouse.style.color = "white";
-      studentHouse.style.fontSize = "1.3rem";
-      studentHouse.style.marginBottom = "10px";
+    studentHouse.style.color = "white";
+    studentHouse.style.fontSize = "1.3rem";
+    studentHouse.style.marginBottom = "10px";
 
-      if (student.house === "Gryffindor") {
-        divContainer.style.backgroundColor = "#7F0909";
-      } else if (student.house === "Ravenclaw") {
-        divContainer.style.backgroundColor = "#0E1A40";
-      } else if (student.house === "Slytherin") {
-        divContainer.style.backgroundColor = "#1A472A";
-      } else {
-        divContainer.style.backgroundColor = "black";
-      }
+    if (student.house === "Gryffindor") {
+      divContainer.style.backgroundColor = "#7F0909";
+    } else if (student.house === "Ravenclaw") {
+      divContainer.style.backgroundColor = "#0E1A40";
+    } else if (student.house === "Slytherin") {
+      divContainer.style.backgroundColor = "#1A472A";
+    } else {
+      divContainer.style.backgroundColor = "black";
+    }
 
-      divContainer.appendChild(studentName);
-      divContainer.appendChild(studentImage);
-      divContainer.appendChild(studentHouse);
-      divContainer.appendChild(divStudentContainer);
-      studentlistContainer.appendChild(divContainer);
+    divContainer.appendChild(studentName);
+    divContainer.appendChild(studentImage);
+    divContainer.appendChild(studentHouse);
+    divContainer.appendChild(divStudentContainer);
+    studentlistContainer.appendChild(divContainer);
 
-      divContainer.addEventListener("click", () => {
-        overlay.innerHTML = "";
-        showStudent(student);
-      });
-    }};
-  
-
+    divContainer.addEventListener("click", () => {
+      overlay.innerHTML = "";
+      showStudent(student);
+    });
+  }
+};
 
 //Viser en student i overlay
 const showStudent = (student) => {
@@ -245,15 +243,12 @@ const sortInAlphabeticalOrder = () => {
 };
 
 //Henter inn input til søkefeilt
-const findStudentInput = document.querySelector('#findStudentInput');
-
+const findStudentInput = document.querySelector("#findStudentInput");
 
 //Søker etter student
 const findStudent = () => {
   const inputValue = findStudentInput.value.toLowerCase();
-  const foundStudents = allStudents.filter((student) =>
-    student.name.toLowerCase().includes(inputValue)
-  );
+  const foundStudents = allStudents.filter((student) => student.name.toLowerCase().includes(inputValue));
 
   if (foundStudents.length > 0) {
     studentlistContainer.innerHTML = "";
@@ -264,7 +259,6 @@ const findStudent = () => {
 };
 
 findStudentInput.addEventListener("input", findStudent);
-
 
 //Legger til student i studentList
 const addStudentToStudentList = (student) => {
@@ -295,4 +289,3 @@ const showStoredStudentList = () => {
 };
 
 showStoredStudentList();
-
