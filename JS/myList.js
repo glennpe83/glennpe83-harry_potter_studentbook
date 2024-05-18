@@ -1,3 +1,4 @@
+//Fetch Harry Potter API, crudAPI og API-Key
 const BASE_URL = "https://hp-api.onrender.com/api/characters/students";
 const USERBASE_URL = "https://crudapi.co.uk/api/v1/user";
 const API_KEY = "Ag7ZwNDZWA0DnKJiXSS2rg6AmGdMQrfEX_8DTeSU4orhdhnRUw";
@@ -27,10 +28,11 @@ const logOut = () => {
   location.reload();
 }
 
+//Henter brukernavn og logg ut-knapp
 const userStatus = document.querySelector('#userStatus');
 const logOutBtn = document.querySelector('#logOutBtn');
 
-
+//Viser brukerinnlogging
 const seeUserStatus = () => {
   if (loggedIn()) {
     const user = getLoggedInUser();
@@ -42,6 +44,7 @@ const seeUserStatus = () => {
   }
 }
 
+//Loggut-knapp som sender brukeren til innlogging-siden
 logOutBtn.addEventListener("click", () => {
   logOut(); 
   window.location.href = "index.html";
@@ -51,6 +54,8 @@ let studentList = JSON.parse(sessionStorage.getItem('studentList'));
 
 seeUserStatus();
 
+
+//Lagrer studentList til API
 const saveStudentListToAPI = async (studentList) => {
   try {
     const response = await fetch(USERBASE_URL, {
@@ -69,6 +74,7 @@ const saveStudentListToAPI = async (studentList) => {
 };
 
 
+//Henter inn div til studentListen
 const myStudentsList = document.querySelector("#myStudentsList");
 
 const showMyStudent = (student) => {
@@ -133,6 +139,8 @@ const showMyStudent = (student) => {
   removeStudent.style.padding = '5px';
   removeStudent.style.margin = '15px';
 
+
+  //Fjerner student fra listen og sessionstorage
 removeStudent.addEventListener('click', async () => {
     const index = studentList.findIndex((s) => s.name === student.name);
     if (index !== -1) {
@@ -166,7 +174,7 @@ removeStudent.addEventListener('click', async () => {
   myStudentsList.appendChild(divContainer);
 };
 
-
+//Sjekker om studentListen er tom
 if (studentList) {
   studentList.forEach((student, index) => {
     showMyStudent(student); 
