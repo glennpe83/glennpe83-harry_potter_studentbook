@@ -10,7 +10,10 @@ Header {
 }
 
 
-API key crudAPI: Ag7ZwNDZWA0DnKJiXSS2rg6AmGdMQrfEX_8DTeSU4orhdhnRUw
+URL til API = "https://hp-api.onrender.com/api/characters/students";
+URL til crudAPI = "https://crudapi.co.uk/api/v1/user";
+API_KEY = "Ag7ZwNDZWA0DnKJiXSS2rg6AmGdMQrfEX_8DTeSU4orhdhnRUw";
+
 
 
 Fargekoder hus:
